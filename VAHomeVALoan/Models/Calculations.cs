@@ -13,11 +13,11 @@ namespace VAHomeVALoan.Models
         public LoanLength LoanPeriod { get; set; }
         public enum LoanLength
         {
-            Fifteen,
-            Thirty
+            Fifteen = 15,
+            Thirty = 30
         }
         //   15-yr,   30-yr
-        public double[] InterestRate { get; set; } = new double[2] { 0.03125, 0.03375 }; // default interest rate per year
+        public double InterestRate { get; set; }  // default interest rate per year
         public double HomeInsurance { get; set; } = 0;
         public double PropertyTax { get; set; } = 0;
         public double PropertyTaxRate { get; set; } = 0.0108; // default property tax rate per year
@@ -35,11 +35,11 @@ namespace VAHomeVALoan.Models
 
 			    switch(LoanPeriod) {
                 case 15:
-                    i = InterestRate[0] / 12;
+                    i = InterestRate / 12;
 					          loanLength = 15 * 12;
                     break;
                 case 30:
-                    i = InterestRate[1] / 12;
+                    i = InterestRate / 12;
 					          loanLength = 30 * 12;
                     break;
                 default:
@@ -78,11 +78,11 @@ namespace VAHomeVALoan.Models
 			      double loanLength; // loan lenth in months
             switch(LoanPeriod) {
                 case 15:
-                    i = InterestRate[0] / 12;
+                    i = InterestRate / 12;
 					          loanLength = 15 * 12;
                     break;
                 case 30:
-                    i = InterestRate[1] / 12;
+                    i = InterestRate / 12;
 					          loanLength = 30 * 12;
                     break;
                 default:
@@ -94,6 +94,11 @@ namespace VAHomeVALoan.Models
             double denominator = Math.Pow(1 + i, loanLength) - 1;
 
             return Math.Ceiling(principleAndInterest * denominator / numerator);
+        }
+
+        public string TestMethod()
+        {
+            return "hello testing";
         }
     }
 }

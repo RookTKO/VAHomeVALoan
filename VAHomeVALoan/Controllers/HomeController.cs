@@ -29,16 +29,12 @@ namespace VAHomeVALoan.Controllers
         }
 
         [HttpPost]
-        public ActionResult Results(/*Calculations model*/)
+        public ActionResult Results(Calculations model)
         {
-            var ResultsFromCalculations = new Calculations()
-            {
-                MonthlyPayment = 10
-            };
-            string test = "Testing this partial result";
-            return PartialView("Results", "hello");
-            ViewBag.TotalStudents = "Hello";
-            ViewBag.Other = "YASS";
+            //ViewBag.Test = (int) model.LoanPeriod;
+            ViewBag.MonthlyPayment = String.Format("Your Monthly Payment: {0}",
+                       model.GetMonthlyPayment((int)model.LoanPeriod));  
+
 
             return PartialView();
 

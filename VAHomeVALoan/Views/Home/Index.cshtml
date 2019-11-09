@@ -2,75 +2,127 @@
 @{
     ViewBag.Title = "VA Home VA Loan";
 }
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Total Payment', 'House Price', 'Down Payment', 'Home Insurance', 'HOA', { role: 'annotation' } ],
+        ['Cost', 10, 24, 20, 32, '']
+      ]);
+
+      var options = {
+        width: 600,
+        height: 400,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>
 
 
 
 
 
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="row">
+            <div class="col-lg-4">
+                @using (Html.BeginForm("Results", "Home", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.HousePrice)
+                        @Html.TextBoxFor(x => x.HousePrice, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.DownPayment)
+                        @Html.TextBoxFor(x => x.DownPayment, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.LoanPeriod)
+                        @Html.EnumDropDownListFor(m => m.LoanPeriod, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.InterestRate)
+                        @Html.TextBoxFor(x => x.InterestRate, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.HomeInsurance)
+                        @Html.TextBoxFor(x => x.HomeInsurance, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.PropertyTaxRate)
+                        @Html.TextBoxFor(x => x.PropertyTaxRate, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.HOA)
+                        @Html.TextBoxFor(x => x.HOA, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.ZipCode)
+                        @Html.TextBoxFor(x => x.ZipCode, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <input type="submit" class="btn btn-outline-primary" value="Submit Values" />
+                        </div>
+                    </div>
+                    Html.EndForm();
+                }
 
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <div class="row">
-                <div class="col-lg-4">
-                    @using (Html.BeginForm("Results", "Home", FormMethod.Post))
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.HousePrice)
-                            @Html.TextBoxFor(x => x.HousePrice, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.DownPayment)
-                            @Html.TextBoxFor(x => x.DownPayment, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.LoanPeriod)
-                            @Html.EnumDropDownListFor(m => m.LoanPeriod, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.InterestRate)
-                            @Html.TextBoxFor(x => x.InterestRate, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.HomeInsurance)
-                            @Html.TextBoxFor(x => x.HomeInsurance, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.PropertyTax)
-                            @Html.TextBoxFor(x => x.PropertyTax, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.HOA)
-                            @Html.TextBoxFor(x => x.HOA, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.ZipCode)
-                            @Html.TextBoxFor(x => x.ZipCode, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <div class="controls">
-                                <input type="submit" class="btn btn-outline-primary" value="Submit Values" />
-                            </div>
-                        </div>
-                        Html.EndForm();
-                    }
-
-                </div>
             </div>
-
-            @Html.Partial("Results")
-
-
-
+            <div class="col-lg-5">
+                <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+            </div>
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            Affordability
+
+        @Html.Partial("Results")
 
 
-        </div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 
-
-        </div>
     </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="col-lg-4">
+            @using (Html.BeginForm("Results", "Home", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label>Debts</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Monthly Credit Card Payments">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Loans">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Other Debts">
+                </div>
+                <div class="form-group">
+                    <label for="AnnualIncome">Annual Income</label>
+                    @Html.TextBoxFor(x => x.AnnualIncome, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <div class="controls">
+                        <input type="submit" class="btn btn-outline-primary" value="Submit Values" />
+                    </div>
+                </div>
+                Html.EndForm();
+            }
 
- 
+        </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+
+    </div>
+</div>
+
