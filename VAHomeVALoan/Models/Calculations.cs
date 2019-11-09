@@ -14,8 +14,8 @@ namespace VAHomeVALoan.Models
 
         public enum LoanLength
         {
-            Fifteen = 15,
-            Thirty = 30
+            Fifteen,
+            Thirty
         }
         //   15-yr,   30-yr
         public double[] InterestRate { get; set; } = new double[2] { 0.03125, 0.03375 }; // default interest rate per year
