@@ -37,7 +37,8 @@ namespace VAHomeVALoan.Controllers
             //};
             //string test = "Testing this partial result";
             //return PartialView("Results", "hello");
-            ViewBag.TotalStudents = "10";
+            ViewBag.TotalStudents = "Hello";
+            ViewBag.Other = "YASS";
 
             return PartialView();
 
