@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VAHomeVALoan", "VAHomeVALoan\VAHomeVALoan.csproj", "{16204A31-4166-4871-97B6-C112A76BA943}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16204A31-4166-4871-97B6-C112A76BA943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16204A31-4166-4871-97B6-C112A76BA943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16204A31-4166-4871-97B6-C112A76BA943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16204A31-4166-4871-97B6-C112A76BA943}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE66848C-4A26-4945-90D0-C541B9F0FDA5}
+	EndGlobalSection
+EndGlobal
