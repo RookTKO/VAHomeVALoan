@@ -7,5 +7,6 @@ namespace VAHomeVALoan.Models
 {
     public class Calculations
     {
+        
     }
 }
