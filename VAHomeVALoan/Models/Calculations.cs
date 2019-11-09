@@ -18,6 +18,9 @@ namespace VAHomeVALoan.Models
         public double HOA { get; set; } = 0;
         public double ZipCode { get; set; }
         public double MonthlyPayment { get; set; }
+        public double OtherDebts { get; set; } // all other monthly debts excluding montly morgage payment
+        public double DebtToIncomeRatio { get; set; } = 0.36; // default max ratio of 36%
+        public double AnnualIncome { get; set; }
 
         public double GetPrincipleAndInterest() // per month
         {   
@@ -51,8 +54,39 @@ namespace VAHomeVALoan.Models
         }
         
 	    public double GetMonthlyPayment() {
-            this.MonthlyPayment = GetPrincipleAndInterest() + this.PropertyTax/12 + HOA + HomeInsurance/12;
+            this.MonthlyPayment = GetPrincipleAndInterest() + GetPropertyTax()/12 + HOA + HomeInsurance/12;
 		    return MonthlyPayment;
 	    }
+
+        public double GetDebtToIncomeRatio() {
+            return OtherDebts / (AnnualIncome / 12);
+        }
+
+        public double GetAffordableLoanAmount() {
+            //DebtToIncomeRatio
+            double monthly_income = this.AnnualIncome / 12;
+            double principleAndInterest = (monthly_income * DebtToIncomeRatio) - (GetPropertyTax()/12 + HOA + HomeInsurance/12 + OtherDebts);
+
+            double i; // interest rate per month
+			double loanLength; // loan lenth in months
+            switch(LoanPeriod) {
+                case "Fifteen":
+                    i = InterestRate[0] / 12;
+					loanLength = 15 * 12;
+                    break;
+                case "Thirty":
+                    i = InterestRate[1] / 12;
+					loanLength = 30 * 12;
+                    break;
+                default:
+                    i = 0;
+					loanLength = 0;
+                    break;
+            }
+            double numerator = i * Math.Pow(1 + i, loanLength);
+            double denominator = Math.Pow(1 + i, loanLength) - 1;
+
+            return Math.Ceiling(principleAndInterest * denominator / numerator);
+        }
     }
 }
