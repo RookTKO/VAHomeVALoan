@@ -7,6 +7,7 @@ namespace VAHomeVALoan.Models
 {
     public class Calculations
     {
+
         public double HousePrice { get; set; }
         public double DownPayment { get; set; }
         public double LoanPeriod { get; set; }
