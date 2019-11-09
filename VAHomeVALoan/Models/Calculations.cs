@@ -10,7 +10,6 @@ namespace VAHomeVALoan.Models
         public double HousePrice { get; set; } = 0;
         public double DownPayment { get; set; } = 0;
         public LoanLength LoanPeriod { get; set; }
-
         public enum LoanLength
         {
             Fifteen = 15,
@@ -28,16 +27,17 @@ namespace VAHomeVALoan.Models
         public double DebtToIncomeRatio { get; set; } = 0.36; // default max ratio of 36%
         public double AnnualIncome { get; set; }
 
-        public double GetPrincipleAndInterest() // per month
+        public double GetPrincipleAndInterest(int LoanPeriod) // per month
         {   
 			double i; // interest rate per month
 			double loanLength; // loan lenth in months
-            switch(LoanPeriod) {
-                case "Fifteen":
+
+			switch(LoanPeriod) {
+                case 15:
                     i = InterestRate[0] / 12;
 					loanLength = 15 * 12;
                     break;
-                case "Thirty":
+                case 30:
                     i = InterestRate[1] / 12;
 					loanLength = 30 * 12;
                     break;
@@ -59,8 +59,8 @@ namespace VAHomeVALoan.Models
             return PropertyTax;
         }
         
-	    public double GetMonthlyPayment() {
-            this.MonthlyPayment = GetPrincipleAndInterest() + GetPropertyTax()/12 + HOA + HomeInsurance/12;
+	    public double GetMonthlyPayment(int LoanPeriod) {
+            this.MonthlyPayment = GetPrincipleAndInterest(LoanPeriod) + GetPropertyTax()/12 + HOA + HomeInsurance/12;
 		    return MonthlyPayment;
 	    }
 
@@ -68,7 +68,7 @@ namespace VAHomeVALoan.Models
             return OtherDebts / (AnnualIncome / 12);
         }
 
-        public double GetAffordableLoanAmount() {
+        public double GetAffordableLoanAmount(int LoanPeriod) {
             //DebtToIncomeRatio
             double monthly_income = this.AnnualIncome / 12;
             double principleAndInterest = (monthly_income * DebtToIncomeRatio) - (GetPropertyTax()/12 + HOA + HomeInsurance/12 + OtherDebts);
@@ -76,11 +76,11 @@ namespace VAHomeVALoan.Models
             double i; // interest rate per month
 			double loanLength; // loan lenth in months
             switch(LoanPeriod) {
-                case "Fifteen":
+                case 15:
                     i = InterestRate[0] / 12;
 					loanLength = 15 * 12;
                     break;
-                case "Thirty":
+                case 30:
                     i = InterestRate[1] / 12;
 					loanLength = 30 * 12;
                     break;
