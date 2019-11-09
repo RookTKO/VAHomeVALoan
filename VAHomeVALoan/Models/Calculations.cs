@@ -59,13 +59,8 @@ namespace VAHomeVALoan.Models
             return PropertyTax;
         }
         
-<<<<<<< HEAD
 	    public double GetMonthlyPayment(int LoanPeriod) {
             this.MonthlyPayment = GetPrincipleAndInterest(LoanPeriod) + GetPropertyTax()/12 + HOA + HomeInsurance/12;
-=======
-	    public double GetMonthlyPayment() {
-            this.MonthlyPayment = GetPrincipleAndInterest() + GetPropertyTax()/12 + HOA + HomeInsurance/12;
->>>>>>> fe8ddddbc8274163c3cfc79dc92a994959b05f61
 		    return MonthlyPayment;
 	    }
 
@@ -73,11 +68,7 @@ namespace VAHomeVALoan.Models
             return OtherDebts / (AnnualIncome / 12);
         }
 
-<<<<<<< HEAD
         public double GetAffordableLoanAmount(int LoanPeriod) {
-=======
-        public double GetAffordableLoanAmount() {
->>>>>>> fe8ddddbc8274163c3cfc79dc92a994959b05f61
             //DebtToIncomeRatio
             double monthly_income = this.AnnualIncome / 12;
             double principleAndInterest = (monthly_income * DebtToIncomeRatio) - (GetPropertyTax()/12 + HOA + HomeInsurance/12 + OtherDebts);
@@ -85,19 +76,12 @@ namespace VAHomeVALoan.Models
             double i; // interest rate per month
 			double loanLength; // loan lenth in months
             switch(LoanPeriod) {
-<<<<<<< HEAD
                 case 15:
                     i = InterestRate[0] / 12;
 					loanLength = 15 * 12;
                     break;
                 case 30:
-=======
-                case "Fifteen":
-                    i = InterestRate[0] / 12;
-					loanLength = 15 * 12;
-                    break;
-                case "Thirty":
->>>>>>> fe8ddddbc8274163c3cfc79dc92a994959b05f61
+
                     i = InterestRate[1] / 12;
 					loanLength = 30 * 12;
                     break;
