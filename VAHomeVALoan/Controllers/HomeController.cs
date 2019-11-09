@@ -29,12 +29,16 @@ namespace VAHomeVALoan.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitTicketAction(Calculations model)
+        public ActionResult Results(/*Calculations model*/)
         {
-            var NewTicketInstance = new Calculations()
-            {
-            };
-            ViewBag.Check = "true";
+            //var ResultsFromCalculations = new Calculations()
+            //{
+            //    MonthlyPayment = 10
+            //};
+            //string test = "Testing this partial result";
+            //return PartialView("Results", "hello");
+            ViewBag.TotalStudents = "10";
+
             return PartialView();
 
         }
