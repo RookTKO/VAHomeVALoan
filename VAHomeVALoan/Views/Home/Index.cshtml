@@ -25,6 +25,34 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
+
+    /*******************************/
+          google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+                var data = google.visualization.arrayToDataTable([
+          ['Monthly Payment', 'Cost'],
+          ['Principal And Interest',     11],
+          ['Property Tax',      2],
+          ['HOA',  2],
+          ['Insurance', 2]
+        ]);
+
+        var options = {
+          title: 'Monthly Payment Breakdown',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+    }
+
+
+    
+
+
+    /*******************************/
+
 </script>
 
 
@@ -78,7 +106,8 @@
                 }
 
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-8">
+                <div id="donutchart" style="width: 900px; height: 500px;"></div>
                 <div id="barchart_material" style="width: 900px; height: 500px;"></div>
             </div>
         </div>
