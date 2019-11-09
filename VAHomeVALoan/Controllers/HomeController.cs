@@ -31,12 +31,12 @@ namespace VAHomeVALoan.Controllers
         [HttpPost]
         public ActionResult Results(/*Calculations model*/)
         {
-            //var ResultsFromCalculations = new Calculations()
-            //{
-            //    MonthlyPayment = 10
-            //};
-            //string test = "Testing this partial result";
-            //return PartialView("Results", "hello");
+            var ResultsFromCalculations = new Calculations()
+            {
+                MonthlyPayment = 10
+            };
+            string test = "Testing this partial result";
+            return PartialView("Results", "hello");
             ViewBag.TotalStudents = "Hello";
             ViewBag.Other = "YASS";
 
