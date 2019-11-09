@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VAHomeVALoan.Models;
 
 namespace VAHomeVALoan.Controllers
 {
@@ -25,6 +26,21 @@ namespace VAHomeVALoan.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Results(/*Calculations model*/)
+        {
+            //var ResultsFromCalculations = new Calculations()
+            //{
+            //    MonthlyPayment = 10
+            //};
+            //string test = "Testing this partial result";
+            //return PartialView("Results", "hello");
+            ViewBag.TotalStudents = "10";
+
+            return PartialView();
+
         }
     }
 }

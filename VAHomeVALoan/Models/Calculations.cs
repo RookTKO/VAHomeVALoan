@@ -7,6 +7,7 @@ namespace VAHomeVALoan.Models
 {
     public class Calculations
     {
+        public string test = "hello testing";
         public double HousePrice { get; set; } = 0;
         public double DownPayment { get; set; } = 0;
         public LoanLength LoanPeriod { get; set; }
@@ -29,21 +30,21 @@ namespace VAHomeVALoan.Models
 
         public double GetPrincipleAndInterest(int LoanPeriod) // per month
         {   
-			double i; // interest rate per month
-			double loanLength; // loan lenth in months
+			    double i; // interest rate per month
+			    double loanLength; // loan lenth in months
 
-			switch(LoanPeriod) {
+			    switch(LoanPeriod) {
                 case 15:
                     i = InterestRate[0] / 12;
-					loanLength = 15 * 12;
+					          loanLength = 15 * 12;
                     break;
                 case 30:
                     i = InterestRate[1] / 12;
-					loanLength = 30 * 12;
+					          loanLength = 30 * 12;
                     break;
                 default:
                     i = 0;
-					loanLength = 0;
+					          loanLength = 0;
                     break;
             }
             double loanAmount = HousePrice - DownPayment;
@@ -74,20 +75,19 @@ namespace VAHomeVALoan.Models
             double principleAndInterest = (monthly_income * DebtToIncomeRatio) - (GetPropertyTax()/12 + HOA + HomeInsurance/12 + OtherDebts);
 
             double i; // interest rate per month
-			double loanLength; // loan lenth in months
+			      double loanLength; // loan lenth in months
             switch(LoanPeriod) {
                 case 15:
                     i = InterestRate[0] / 12;
-					loanLength = 15 * 12;
+					          loanLength = 15 * 12;
                     break;
                 case 30:
-
                     i = InterestRate[1] / 12;
-					loanLength = 30 * 12;
+					          loanLength = 30 * 12;
                     break;
                 default:
                     i = 0;
-					loanLength = 0;
+					          loanLength = 0;
                     break;
             }
             double numerator = i * Math.Pow(1 + i, loanLength);
