@@ -9,8 +9,14 @@ namespace VAHomeVALoan.Models
     {
         public double HousePrice { get; set; } = 0;
         public double DownPayment { get; set; } = 0;
-        public string LoanPeriod { get; set; }
-                                                                //   15-yr,   30-yr
+        public LoanLength LoanPeriod { get; set; }
+
+        public enum LoanLength
+        {
+            Fifteen = 15,
+            Thirty = 30
+        }
+        //   15-yr,   30-yr
         public double[] InterestRate { get; set; } = new double[2] { 0.03125, 0.03375 }; // default interest rate per year
         public double HomeInsurance { get; set; } = 0;
         public double PropertyTax { get; set; } = 0;
