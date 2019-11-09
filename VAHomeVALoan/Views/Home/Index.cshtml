@@ -1,14 +1,44 @@
 ﻿@model VAHomeVALoan.Models.Calculations
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "VA Home VA Loan";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    @Html.LabelFor(m => m.HousePrice)
-</div>
+    <div class="row">
+        @using (Html.BeginForm("Index", "CalculationsController", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(x => x.HousePrice)
+                @Html.TextBoxFor(x => x.HousePrice, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.DownPayment)
+                @Html.TextBoxFor(x => x.DownPayment, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.LoanPeriod)
+                @Html.TextBoxFor(x => x.LoanPeriod, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.InterestRate)
+                @Html.TextBoxFor(x => x.InterestRate, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.HomeInsurace)
+                @Html.TextBoxFor(x => x.HomeInsurace, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.PropertyTax)
+                @Html.TextBoxFor(x => x.PropertyTax, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.HOA)
+                @Html.TextBoxFor(x => x.HOA, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.ZipCode)
+                @Html.TextBoxFor(x => x.ZipCode, new { @class = "form-control" })
+            </div>
+            Html.EndForm();
+        }
+    </div>

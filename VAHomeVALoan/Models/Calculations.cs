@@ -16,5 +16,6 @@ namespace VAHomeVALoan.Models
         public double HOA { get; set; }
         public double ZipCode { get; set; }
         public double MonthlyPayment { get; set; }
+
     }
 }
