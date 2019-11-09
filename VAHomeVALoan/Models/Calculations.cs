@@ -25,16 +25,16 @@ namespace VAHomeVALoan.Models
         public double ZipCode { get; set; }
         public double MonthlyPayment { get; set; }
 
-        public double GetPrincipleAndInterest() // per month
+        public double GetPrincipleAndInterest(LoanLength LoanPeriod) // per month
         {   
 			double i; // interest rate per month
 			double loanLength; // loan lenth in months
             switch(LoanPeriod) {
-                case "Fifteen":
+                case LoanLength.Fifteen:
                     i = InterestRate[0] / 12;
 					loanLength = 15 * 12;
                     break;
-                case "Thirty":
+                case LoanLength.Thirty:
                     i = InterestRate[1] / 12;
 					loanLength = 30 * 12;
                     break;
@@ -57,7 +57,7 @@ namespace VAHomeVALoan.Models
         }
         
 	    public double GetMonthlyPayment() {
-            this.MonthlyPayment = GetPrincipleAndInterest() + this.PropertyTax/12 + HOA + HomeInsurance/12;
+            this.MonthlyPayment = GetPrincipleAndInterest(LoanPeriod) + this.PropertyTax/12 + HOA + HomeInsurance/12;
 		    return MonthlyPayment;
 	    }
     }
