@@ -5,6 +5,8 @@ A platform to assist Service Members, Veterans, and Spouses in Home Search and P
 
 # Project Goals
 - Provide free and user friendly tools for home purchaser using VA Loan 
+- Ease the confusion and frustration locating affordable homes
+- Educate and calculate benifits and expenses in home purchase using VA Loan 
 
 # Website
 https://vahomeloan.azurewebsites.net/
@@ -22,6 +24,7 @@ https://vahomeloan.azurewebsites.net/
   - HOA
  
  # Features to implement
+ - Add info button to each factor in determining monthly morgage payment
  - List amortization schedule
  - List and display affordable properties on map
  - Offers calculation on variety loan options 
