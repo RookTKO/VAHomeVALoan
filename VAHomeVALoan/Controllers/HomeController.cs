@@ -28,16 +28,34 @@ namespace VAHomeVALoan.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
+        //public ActionResult Results(Calculations model)
+        //{
+        //    //ViewBag.Test = (int) model.LoanPeriod;
+        //    ViewBag.MonthlyPayment = String.Format("Your Monthly Payment: {0}",
+        //               model.GetMonthlyPayment((int)model.LoanPeriod));  
+
+
+        //    return PartialView("Results", model);
+
+        //}
+
         public ActionResult Results(Calculations model)
         {
-            //ViewBag.Test = (int) model.LoanPeriod;
-            ViewBag.MonthlyPayment = String.Format("Your Monthly Payment: {0}",
-                       model.GetMonthlyPayment((int)model.LoanPeriod));  
+            //model = Calculations;
+            ////ViewBag.Test = (int) model.LoanPeriod;
+            //ViewBag.MonthlyPayment = String.Format("Your Monthly Payment: {0}",
+            //           model.GetMonthlyPayment((int)model.LoanPeriod));
 
+            //ViewBag.MonthlyPayment = String.Format("{0}", model);
+            ViewBag.test = "test";
+            return PartialView("Results");
 
-            return PartialView();
-
+        }
+        public ActionResult Example(string id)
+        {
+            //This will populate the Test Partial View with your value(s)
+            return PartialView("Test", id);
         }
     }
 }

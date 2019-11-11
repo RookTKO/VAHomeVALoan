@@ -8,18 +8,18 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Total Payment', 'House Price', 'Down Payment', 'Home Insurance', 'HOA', { role: 'annotation' } ],
-        ['Cost', 10, 24, 20, 32, '']
-      ]);
+        var data = google.visualization.arrayToDataTable([
+            ['Total Payment', 'House Price', 'Down Payment', 'Home Insurance', 'HOA', { role: 'annotation' }],
+            ['Cost', 10, 24, 20, 32, '']
+        ]);
 
-      var options = {
-        width: 600,
-        height: 400,
-        legend: { position: 'top', maxLines: 3 },
-        bar: { groupWidth: '75%' },
-        isStacked: true
-      };
+        var options = {
+            width: 600,
+            height: 400,
+            legend: { position: 'top', maxLines: 3 },
+            bar: { groupWidth: '75%' },
+            isStacked: true
+        };
 
         var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
@@ -27,20 +27,20 @@
     }
 
     /*******************************/
-          google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart2);
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart2);
     function drawChart2() {
-                var data = google.visualization.arrayToDataTable([
-          ['Monthly Payment', 'Cost'],
-          ['Principal And Interest',     11],
-          ['Property Tax',      2],
-          ['HOA',  2],
-          ['Insurance', 2]
+        var data = google.visualization.arrayToDataTable([
+            ['Monthly Payment', 'Cost'],
+            ['Principal And Interest', 11],
+            ['Property Tax', 2],
+            ['HOA', 2],
+            ['Insurance', 2]
         ]);
 
         var options = {
-          title: 'Monthly Payment Breakdown',
-          pieHole: 0.4,
+            title: 'Monthly Payment Breakdown',
+            pieHole: 0.4,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -48,7 +48,7 @@
     }
 
 
-    
+
 
 
     /*******************************/
@@ -104,7 +104,32 @@
                     </div>
                     Html.EndForm();
                 }
-                @Html.Partial("Results")
+
+
+                <!------------------------------------------------------------------------------------------------>
+                <!-- Your Script -->
+                <script type='text/javascript'>
+//Your method (dramatically simplified)
+function BuildExcludedDrives() {
+    $.ajax({
+        url: '@Url.Action("Results", "Home")',
+        //Passes the content of an input up
+        data: { model: '@Model' },
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            $('#monthlyPaymentOut').html(data);
+        }
+    });
+}
+                </script>
+                <!-- An input that will fire your event -->
+                <input id='monthlyPaymentCalc' onchange='BuildExcludedDrives();' />
+                <div id='monthlyPaymentOut'>
+                    <!-- Output goes here -->
+                </div>
+
+
+
             </div>
             <div class="col-lg-8">
                 <div id="donutchart" style="width: 900px; height: 500px;"></div>
@@ -148,6 +173,7 @@
 
     </div>
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
 
 
     </div>
